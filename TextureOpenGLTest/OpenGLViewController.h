@@ -6,8 +6,8 @@
 //  Copyright © 2017 123. All rights reserved.
 //
 
-#import <GLKit/GLKit.h>
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
 
-@interface OpenGLViewController : GLKViewController
+@interface OpenGLViewController : ASViewController
 
 @end
