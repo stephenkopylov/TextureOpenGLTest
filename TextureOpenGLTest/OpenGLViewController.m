@@ -7,15 +7,7 @@
 //
 
 #import "OpenGLViewController.h"
-#import <GLKit/GLKit.h>
 #define ARC4RANDOM_MAX 0x100000000
-
-@interface OpenGLViewController ()<GLKViewDelegate>
-
-@property (nonatomic) ASDisplayNode *glNode;
-@property (nonatomic) GLKView *glView;
-
-@end
 
 @implementation OpenGLViewController {
     double _randRed;
@@ -23,32 +15,18 @@
     double _randBlue;
 }
 
-- (instancetype)init
-{
-    _glView = [GLKView new];
-    
-    self = [super initWithNode:[[ASDisplayNode alloc] initWithViewBlock:^UIView *_Nonnull {
-        return _glView; //f*ck retain cycles!
-    }]];
-    
-    if ( self ) {
-    }
-    
-    return self;
-}
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    _glView.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-    
-    _glView.delegate = self;
+    GLKView *view = (GLKView *)self.view;
+    view.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
     _randRed = ((double)arc4random() / ARC4RANDOM_MAX);
     _randGreen = ((double)arc4random() / ARC4RANDOM_MAX);
     _randBlue = ((double)arc4random() / ARC4RANDOM_MAX);
+    
+    self.preferredFramesPerSecond = 60;
 }
 
 
